@@ -1,0 +1,52 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "$kotlin_version"
+    id 'com.github.johnrengelman.shadow' version "$shadowjar_version"
+    id "application"
+}
+
+group = 'com.test'
+version = "0.0.1"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(jvm_version)
+    }
+}
+
+tasks.withType(KotlinJvmCompile).configureEach {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict", "-Xbackend-threads=0")
+    }
+}
+
+dependencies {
+    compileOnly libs.slf4j
+    compileOnly libs.bundles.flink
+    compileOnly libs.flink.kubernetes
+
+    implementation libs.flink.state.processor
+    implementation libs.jackson.module.kotlin
+    implementation "org.jetbrains.kotlin:kotlin-reflect"
+}
+
+application {
+    mainClass = 'com.test.ApplicationKt'
+}
+
+shadowJar {
+    archiveFileName = rootProject.name + "-shadow.jar"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

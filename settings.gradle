@@ -1,0 +1,39 @@
+rootProject.name = 'test-flink-state-processor'
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            version("slf4j", slf4j_version)
+            version("flink", flink_version)
+            version("jackson", jackson_version)
+
+            library("slf4j", "org.slf4j", "slf4j-api").versionRef("slf4j")
+
+            library("flink-java", "org.apache.flink", "flink-java").versionRef("flink")
+            library("flink-streaming-java", "org.apache.flink", "flink-streaming-java").versionRef("flink")
+            library("flink-clients", "org.apache.flink", "flink-clients").versionRef("flink")
+            library("flink-statebackend-rocksdb", "org.apache.flink", "flink-statebackend-rocksdb").versionRef("flink")
+            library("flink-state-processor", "org.apache.flink", "flink-state-processor-api").versionRef("flink")
+            library("flink-fs-azure", "org.apache.flink", "flink-azure-fs-hadoop").versionRef("flink")
+            library("flink-kubernetes", "org.apache.flink", "flink-kubernetes").versionRef("flink")
+
+            bundle("flink", [
+                    "flink-java",
+                    "flink-streaming-java",
+                    "flink-clients",
+                    "flink-statebackend-rocksdb",
+            ])
+
+            library("jackson-core", "com.fasterxml.jackson.core", "jackson-core").versionRef("jackson")
+            library("jackson-annotations", "com.fasterxml.jackson.core", "jackson-annotations").versionRef("jackson")
+            library("jackson-databind", "com.fasterxml.jackson.core", "jackson-databind").versionRef("jackson")
+            library("jackson-module-kotlin", "com.fasterxml.jackson.module", "jackson-module-kotlin").versionRef("jackson")
+
+            bundle("jackson", [
+                    "jackson-core",
+                    "jackson-annotations",
+                    "jackson-databind",
+            ])
+        }
+    }
+}

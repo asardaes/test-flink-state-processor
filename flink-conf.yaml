@@ -1,0 +1,46 @@
+restart-strategy.type: none
+parallelism.default: 1
+pipeline.max-parallelism: 120
+execution.shutdown-on-application-finish: false
+jobmanager.bind-host: localhost
+jobmanager.rpc.address: localhost
+jobmanager.memory.process.size: 1g
+jobmanager.memory.jvm-overhead.fraction: 0.4
+jobmanager.memory.jvm-metaspace.size: 150m
+jobmanager.rpc.bind-port: 6123
+jobmanager.rpc.port: 6123
+rest.address: localhost
+rest.bind-address: localhost
+rest.bind-port: 8081-8090
+taskmanager.host: localhost
+taskmanager.bind-host: localhost
+taskmanager.numberOfTaskSlots: 6
+taskmanager.memory.process.size: 3g
+taskmanager.memory.jvm-metaspace.size: 128m
+taskmanager.memory.jvm-overhead.fraction: 0.2
+taskmanager.memory.managed.fraction: 0.3
+taskmanager.memory.network.max: 128m
+env.java.opts.taskmanager: -XX:+UseG1GC
+
+state.backend.type: rocksdb
+
+# Directory for checkpoints filesystem, when using any of the default bundled
+# state backends.
+#
+state.checkpoints.dir: file:///tmp/flink/state/checkpoints
+
+# Default target directory for savepoints, optional.
+#
+state.savepoints.dir: file:///tmp/flink/state/savepoints
+
+# Flag to enable/disable incremental checkpoints for backends that
+# support incremental checkpoints (like the RocksDB state backend).
+#
+state.backend.incremental: true
+
+# The failover strategy, i.e., how the job computation recovers from task failures.
+# Only restart tasks that may have been affected by the task failure, which typically includes
+# downstream tasks and potentially upstream tasks if their produced data is no longer available for consumption.
+
+jobmanager.execution.failover-strategy: region
+rest.flamegraph.enabled: true

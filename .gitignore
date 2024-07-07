@@ -1,0 +1,24 @@
+HELP.md
+*.pfx
+.DS_Store
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+/.idea
+
+# Gradle
+build
+.gradle
+
+# Maven
+.m2
+target/
+!.mvn/wrapper/maven-wrapper.jar
