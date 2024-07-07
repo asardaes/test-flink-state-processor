@@ -1,5 +1,7 @@
 First copy [`flink-conf.yaml`](flink-conf.yaml) to `"$FLINK_HOME/conf"`
 
+Download `dummy.txt` from [GitHub release](https://github.com/asardaes/test-flink-state-processor/releases/tag/v0) and place the file in `src/main/resources`
+
 Build jar with:
 
 ```shell
