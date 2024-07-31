@@ -28,7 +28,7 @@ tasks.withType(KotlinJvmCompile).configureEach {
 
 dependencies {
     compileOnly libs.slf4j
-    compileOnly libs.bundles.flink
+    implementation libs.bundles.flink
     compileOnly libs.flink.kubernetes
 
     implementation libs.flink.state.processor
